@@ -6,14 +6,12 @@ function MySelect({ options, defaultValue }) {
   return (
     <div className={classes.boxMySelect}>
       <select>
-        <option disabled={true} value=''>{defaultValue}</option>
-
-        {/* {options.map(option =>
+        {/* <option disabled value=''>{defaultValue}</option> */}
+        {options.map(option =>
           <option value={option.value}>
             {option.name}
           </option>
-        )} */}
-
+        )}
       </select>
     </div>
   )

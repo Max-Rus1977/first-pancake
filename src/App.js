@@ -30,7 +30,7 @@ function App() {
       <PostForm create={createPost} />
       <LinComponent />
       <MySelect
-        defaultValue='Сортировка по:'
+      // defaultValue='Сортировка по:'
       />
       {
         posts.length !== 0
