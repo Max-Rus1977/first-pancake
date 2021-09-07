@@ -12,7 +12,6 @@ function PostForm({ create }) {
       ...postContent, id: Date.now()
     }
     create(newPost);
-    //setPosts([...posts, { ...postContent, id: Date.now() }]);
     setPostContent({ title: '', content: '' });
   }
 

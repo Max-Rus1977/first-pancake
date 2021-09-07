@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Counter from "./components/Counter";
-import ClassCounter from "./components/ClassCounter";
-import ChangesInput from "./components/ChangesInput";
+import UpBlock from "./components/UpBlock";
 import PostList from "./components/PostList";
 import LinComponent from "./components/LinComponent";
 import PostForm from "./components/PostForm";
+import MySelect from "./components/UI/select/MySelect";
 
 import "./stiles/App.css";
 
@@ -26,12 +25,19 @@ function App() {
 
   return (
     <div className="App">
-      <Counter />
-      <ClassCounter />
-      <ChangesInput />
+      <UpBlock />
       <LinComponent />
       <PostForm create={createPost} />
-      <PostList remove={removePost} posts={posts} title='Список постов 1' />
+      <LinComponent />
+      <MySelect
+        defaultValue='Сортировка по:'
+      />
+      {
+        posts.length !== 0
+          ? <PostList remove={removePost} posts={posts} title='Список постов 1' />
+          : <h4 className='non-posts'>Постов нет!</h4>
+      }
+
     </div >
   );
 }

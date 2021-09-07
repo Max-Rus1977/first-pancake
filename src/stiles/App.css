@@ -12,6 +12,12 @@
   margin-top: 20px;
 }
 
+.box-upBlock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .result {
   font-size: 35px;
   font-weight: bold;
@@ -27,10 +33,6 @@
   padding: 15px;
   text-align: center;
   border: 2px solid silver;
-}
-
-.disp-ilb:first-child {
-  margin-left: 30%;
 }
 
 button {
@@ -62,6 +64,13 @@ button {
 
 .ta-cnter {
   text-align: center;
+}
+
+.non-posts {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .class-form {
