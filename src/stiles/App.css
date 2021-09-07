@@ -30,7 +30,7 @@
 }
 
 .disp-ilb:first-child {
-  margin-left: 0;
+  margin-left: 30%;
 }
 
 button {
@@ -51,7 +51,22 @@ button {
   font-size: inherit;
 }
 
+.separator-line {
+  width: 80%;
+  height: 2px;
+  margin: 20px auto 0 auto;
+  background-color: #000;
+}
+
 /* PostItem */
+
+.ta-cnter {
+  text-align: center;
+}
+
+.class-form {
+  margin-top: 40px;
+}
 
 .title-posts {
   margin-top: 40px;
@@ -78,4 +93,8 @@ button {
 .box-content p {
   margin-top: 10px;
   font-size: 18px;
+}
+
+.box-btn button {
+  margin-top: 0;
 }

@@ -3,8 +3,11 @@ import Counter from "./components/Counter";
 import ClassCounter from "./components/ClassCounter";
 import ChangesInput from "./components/ChangesInput";
 import PostList from "./components/PostList";
+import LinComponent from "./components/LinComponent";
+import PostForm from "./components/PostForm";
 
 import "./stiles/App.css";
+
 
 function App() {
   const [posts, setPosts] = useState([
@@ -13,17 +16,22 @@ function App() {
     { id: 3, title: 'Заголовок', content: 'Какой-то интересный текст' },
   ]);
 
+  function createPost(newPost) {
+    setPosts([...posts, newPost])
+  }
+
+  function removePost(post) {
+    setPosts(posts.filter(p => p.id !== post.id))
+  }
+
   return (
     <div className="App">
       <Counter />
       <ClassCounter />
       <ChangesInput />
-      <form>
-        <input type="text" placeholder="Название поста" />
-        <input type="text" placeholder="Описание поста" />
-        <button>Создать пост</button>
-      </form>
-      <PostList posts={posts} title='Список постов 1' />
+      <LinComponent />
+      <PostForm create={createPost} />
+      <PostList remove={removePost} posts={posts} title='Список постов 1' />
     </div >
   );
 }
