@@ -7,7 +7,6 @@ import MySelect from "./components/UI/select/MySelect";
 
 import "./stiles/App.css";
 
-
 function App() {
   const [posts, setPosts] = useState([
     { id: 1, title: 'Заголовок', content: 'Какой-то интересный текст' },
@@ -23,6 +22,14 @@ function App() {
     setPosts(posts.filter(p => p.id !== post.id))
   }
 
+  const [selectetSort, setselectetSort] = useState('');
+
+  function sortPosts(sort) {
+    setselectetSort(sort)
+    console.log(sort)
+    console.log('gpju');
+  }
+
   return (
     <div className="App">
       <UpBlock />
@@ -30,7 +37,13 @@ function App() {
       <PostForm create={createPost} />
       <LinComponent />
       <MySelect
-      // defaultValue='Сортировка по:'
+        value={selectetSort}
+        onChange={sortPosts}
+        defaultValue='Сортировка по:'
+        options={[
+          { value: 'title', name: 'По названию' },
+          { value: 'content', name: 'По описанию' }
+        ]}
       />
       {
         posts.length !== 0

@@ -1,20 +1,22 @@
 import React from "react";
 import classes from "./MySelect.module.css";
 
-function MySelect({ options, defaultValue }) {
+function MySelect({ options, defaultValue, value, onChange }) {
 
   return (
     <div className={classes.boxMySelect}>
-      <select>
-        {/* <option disabled value=''>{defaultValue}</option> */}
+      <select
+        value={value}
+        onChange={event => event.target.value}>
+        <option disabled={true}>{defaultValue}</option>
         {options.map(option =>
-          <option value={option.value}>
+          <option key={option.value} value={option.value}>
             {option.name}
           </option>
         )}
       </select>
     </div>
-  )
-}
+  );
+};
 
 export default MySelect;
