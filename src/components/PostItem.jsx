@@ -6,7 +6,7 @@ function PostItem(props) {
     <div className="post-item">
       <div className="box-content">
         <h4>{props.number} {props.post.title}</h4>
-        <p>{props.post.content}</p>
+        <p>{props.post.body}</p>
       </div>
       <div className="box-btn">
         <MyButton onClick={() => props.remove(props.post)}>

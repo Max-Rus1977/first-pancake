@@ -1,7 +1,7 @@
 import React from "react";
-import Counter from "./Counter";
-import ClassCounter from "./ClassCounter";
-import ChangesInput from "./ChangesInput";
+import Counter from "../examples/Counter";
+import ClassCounter from "../examples/ClassCounter";
+import ChangesInput from "../examples/ChangesInput";
 
 function UpBlock() {
 

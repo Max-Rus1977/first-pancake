@@ -9,9 +9,9 @@ import "./stiles/App.css";
 
 function App() {
   const [posts, setPosts] = useState([
-    { id: 1, title: 'Заголовок', content: 'Какой-то интересный текст' },
-    { id: 2, title: 'Заголовок', content: 'Какой-то интересный текст' },
-    { id: 3, title: 'Заголовок', content: 'Какой-то интересный текст' },
+    { id: 1, title: 'Заголовок первого поста', body: 'Какой-то интересный текст' },
+    { id: 2, title: 'Заголовок второго', body: 'Произвольный текст' },
+    { id: 3, title: 'Третий заголовок', body: 'Супер интересный пост' },
   ]);
 
   function createPost(newPost) {
@@ -22,27 +22,26 @@ function App() {
     setPosts(posts.filter(p => p.id !== post.id))
   }
 
-  const [selectetSort, setselectetSort] = useState('');
+  const [selectetSort, setSelectetSort] = useState('');
 
   function sortPosts(sort) {
-    setselectetSort(sort)
-    console.log(sort)
-    console.log('gpju');
+    setSelectetSort(sort)
+    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
+
   }
 
   return (
     <div className="App">
       <UpBlock />
-      <LinComponent />
       <PostForm create={createPost} />
       <LinComponent />
       <MySelect
         value={selectetSort}
         onChange={sortPosts}
-        defaultValue='Сортировка по:'
+        defaultValue='Сщртитровка по :'
         options={[
-          { value: 'title', name: 'По названию' },
-          { value: 'content', name: 'По описанию' }
+          { value: 'title', name: 'По заголовку' },
+          { value: 'body', name: 'По описанию' },
         ]}
       />
       {

@@ -4,15 +4,15 @@ import MyInput from "./UI/input/MyInput";
 
 function PostForm({ create }) {
 
-  const [postContent, setPostContent] = useState({ title: '', content: '' });
+  const [postbody, setPostbody] = useState({ title: '', body: '' });
 
   function addNewPost(event) {
     event.preventDefault();
     const newPost = {
-      ...postContent, id: Date.now()
+      ...postbody, id: Date.now()
     }
     create(newPost);
-    setPostContent({ title: '', content: '' });
+    setPostbody({ title: '', body: '' });
   }
 
   return (
@@ -20,14 +20,14 @@ function PostForm({ create }) {
       <MyInput
         type="text"
         placeholder="Название поста"
-        value={postContent.title}
-        onChange={(event) => setPostContent({ ...postContent, title: event.target.value })}
+        value={postbody.title}
+        onChange={(event) => setPostbody({ ...postbody, title: event.target.value })}
       />
       <MyInput
         type="text"
         placeholder="Описание поста"
-        value={postContent.content}
-        onChange={(event) => setPostContent({ ...postContent, content: event.target.value })}
+        value={postbody.body}
+        onChange={(event) => setPostbody({ ...postbody, body: event.target.value })}
       />
       <MyButton onClick={addNewPost}>Создать пост</MyButton>
     </form>

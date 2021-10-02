@@ -5,7 +5,7 @@
 
 .App {
   width: 90%;
-  margin: 60px auto 0 auto;
+  margin: 0 auto;
 }
 
 .mt-20 {
@@ -106,4 +106,10 @@ button {
 
 .box-btn button {
   margin-top: 0;
+}
+
+/* Счётчки и инпут */
+
+.count, .class-count, .box-input-changes {
+  display: none;
 }
