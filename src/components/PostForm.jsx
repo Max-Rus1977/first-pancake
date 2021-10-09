@@ -8,12 +8,17 @@ function PostForm({ create }) {
 
   function addNewPost(event) {
     event.preventDefault();
-    const newPost = {
-      ...postbody, id: Date.now()
+    if (postbody.title !== '' && postbody.body !== '') {
+      const newPost = {
+        ...postbody, id: Date.now()
+      }
+      create(newPost);
+      setPostbody({ title: '', body: '' });
+    } else {
+      alert('Заполните все поля!')
     }
-    create(newPost);
-    setPostbody({ title: '', body: '' });
   }
+
 
   return (
     <form className='class-form ta-cnter'>

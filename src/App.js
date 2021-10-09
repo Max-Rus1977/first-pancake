@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import UpBlock from "./components/UpBlock";
+import React, { useMemo, useState } from "react";
+
+import MyButton from "./components/UI/button/MyButton";
+import MyModal from "./components/UI/modal/MyModal";
 import PostList from "./components/PostList";
+import PostFilter from "./components/PostFilter";
 import LinComponent from "./components/LinComponent";
 import PostForm from "./components/PostForm";
-import MySelect from "./components/UI/select/MySelect";
 
 import "./stiles/App.css";
 
@@ -14,42 +16,48 @@ function App() {
     { id: 3, title: 'Третий заголовок', body: 'Супер интересный пост' },
   ]);
 
+  const [filter, setFilter] = useState({ sort: '', query: '' });
+  const [modal, setModal] = useState(false);
+
+  const sortedPost = useMemo(() => {
+
+    if (filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
+    }
+    return posts;
+  }, [filter.sort, posts]);
+
+  const sortedAndSearchPosts = useMemo(() => {
+    return sortedPost.filter(post => post.title.toLowerCase().includes(filter.query))
+  }, [filter.query, sortedPost])
+
   function createPost(newPost) {
     setPosts([...posts, newPost])
+    setModal(false)
   }
 
   function removePost(post) {
     setPosts(posts.filter(p => p.id !== post.id))
   }
-
-  const [selectetSort, setSelectetSort] = useState('');
-
-  function sortPosts(sort) {
-    setSelectetSort(sort)
-    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
-
-  }
-
+  //
   return (
     <div className="App">
-      <UpBlock />
-      <PostForm create={createPost} />
-      <LinComponent />
-      <MySelect
-        value={selectetSort}
-        onChange={sortPosts}
-        defaultValue='Сщртитровка по :'
-        options={[
-          { value: 'title', name: 'По заголовку' },
-          { value: 'body', name: 'По описанию' },
-        ]}
-      />
-      {
-        posts.length !== 0
-          ? <PostList remove={removePost} posts={posts} title='Список постов 1' />
-          : <h4 className='non-posts'>Постов нет!</h4>
-      }
+      <MyButton
+        onClick={() => setModal(true)}
+      >Создать пост</MyButton>
+      <MyModal
+        visible={modal}
+        setVisible={setModal}
 
+      >
+        <PostForm create={createPost} />
+      </MyModal>
+      <LinComponent />
+      <PostFilter
+        filter={filter}
+        setFilter={setFilter}
+      />
+      <PostList remove={removePost} posts={sortedAndSearchPosts} title='Список постов 1' />
     </div >
   );
 }
