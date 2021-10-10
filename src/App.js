@@ -8,6 +8,8 @@ import PostFilter from "./components/PostFilter";
 import LinComponent from "./components/LinComponent";
 import PostForm from "./components/PostForm";
 
+import axios from "axios";
+
 import "./stiles/App.css";
 
 function App() {
@@ -17,6 +19,11 @@ function App() {
 
   const sortedAndSearchPosts = usePost(posts, filter.sort, filter.query);
 
+  async function featchPost() {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    setPosts(response.data)
+  }
+
   function createPost(newPost) {
     setPosts([...posts, newPost])
     setModal(false)
@@ -25,9 +32,10 @@ function App() {
   function removePost(post) {
     setPosts(posts.filter(p => p.id !== post.id))
   }
-  //
+
   return (
     <div className="App">
+      <button onClick={featchPost}>GET POSTS</button>
       <MyButton
         onClick={() => setModal(true)}
       >Создать пост</MyButton>
