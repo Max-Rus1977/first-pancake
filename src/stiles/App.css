@@ -121,3 +121,23 @@ button {
 .box-btn button {
   margin-top: 0;
 }
+
+/** Transition Grop animation **/
+
+.post-enter {
+  transform: translateX(-350px);
+}
+
+.post-enter-active {
+  transform: translateX(0px);
+  transition: 500ms ease-in;
+}
+
+.post-exit {
+  opacity: 1;
+}
+
+.post-exit-active {
+  transform: translateX(-350px);
+  transition: 500ms ease-in;
+}
