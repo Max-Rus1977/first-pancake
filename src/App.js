@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { usePost } from "./components/hooks/usePost";
+import { usePost } from "./hooks/usePost";
 
 import MyButton from "./components/UI/button/MyButton";
 import MyModal from "./components/UI/modal/MyModal";
@@ -8,9 +8,8 @@ import PostFilter from "./components/PostFilter";
 import LinComponent from "./components/LinComponent";
 import PostForm from "./components/PostForm";
 
-import axios from "axios";
-
 import "./stiles/App.css";
+import PostService from "./API/PostService";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -24,8 +23,8 @@ function App() {
   }, [])
 
   async function featchPost() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    setPosts(response.data)
+    const posts = await PostService.getAll();
+    setPosts(posts);
   }
 
   function createPost(newPost) {
@@ -45,7 +44,6 @@ function App() {
       <MyModal
         visible={modal}
         setVisible={setModal}
-
       >
         <PostForm create={createPost} />
       </MyModal>
