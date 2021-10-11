@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePost } from "./components/hooks/usePost";
 
 import MyButton from "./components/UI/button/MyButton";
@@ -19,6 +19,10 @@ function App() {
 
   const sortedAndSearchPosts = usePost(posts, filter.sort, filter.query);
 
+  useEffect(() => {
+    featchPost();
+  }, [])
+
   async function featchPost() {
     const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
     setPosts(response.data)
@@ -35,7 +39,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={featchPost}>GET POSTS</button>
       <MyButton
         onClick={() => setModal(true)}
       >Создать пост</MyButton>
