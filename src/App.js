@@ -10,6 +10,7 @@ import PostForm from "./components/PostForm";
 
 import "./stiles/App.css";
 import PostService from "./API/PostService";
+import MyLoader from "./components/UI/loader/MyLoader";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -29,7 +30,7 @@ function App() {
       const posts = await PostService.getAll();
       setPosts(posts);
       setIsPostsLoading(false);
-    }, 2000)
+    }, 6000)
   }
 
   function createPost(newPost) {
@@ -58,7 +59,7 @@ function App() {
         setFilter={setFilter}
       />
       {isPostsLoading
-        ? <h2>Идёт загрузка .... </h2>
+        ? <MyLoader />
         : <PostList remove={removePost} posts={sortedAndSearchPosts} title='Список постов 1' />
       }
     </div >
